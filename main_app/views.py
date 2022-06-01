@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from .models import Finch
+from .models import Finch, Game
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
+from django.shortcuts import redirect
 # Create your views here
 
 
@@ -58,3 +59,12 @@ class FinchDelete(DeleteView):
     model = Finch
     template_name = 'finch_delete_confirmation.html'
     success_url = '/finches/'
+
+class GameCreate(View):
+    def post(self, request, pk):
+        opponent = request.POST.get("opponent")
+        date = request.POST.get("date")
+        points = request.POST.get("points")
+        finch = Finch.objects.get(pk = pk)
+        Game.objects.create(opponent = opponent, date = date, points = points, finch = finch)
+        return redirect('finch_detail', pk = pk)

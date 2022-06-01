@@ -15,11 +15,26 @@
     <a href = "{% url 'finch_delete' finch.pk %}">Delete {{finch.name}}</a>
 </div>
 
-<div class="detail__songs mb-5">
+<form action = "{% url 'game_create' finch.pk %}" method = "post">
+    {% csrf_token %}
+    <div>
+        <input type = 'text' name = 'opponent' placeholder="opponent" required/>
+    </div>
+    <div>
+        <input type = 'text' name = 'date' placeholder = 'date (MM/DD/YYYY)' required/>
+    </div>
+    <div>
+        <input type = 'number' name = 'points' min = 0 placeholder="0" required />
+    </div>
+    <div>
+        <input type = 'submit' value = "Add Game" />
+    </div>
+</form>
+<div>
     <h3>Games</h3>
 
     {% for game in finch.games.all %}
-    <div class="song">
+    <div>
       <span><b>{{game.date}}</b></span>
       <span><b>{{game.opponent}}</b></span>
       <span>{{game.points}}</span>
