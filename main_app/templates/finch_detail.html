@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class = "detail__image">
+    <img src = "{{finch.img}}" alt = "{{finch.name}}" />
+</div>
+<h1>{{finch.name}}</h1>
+<div class = "about">
+    <h4>About</h4>
+    <p>{{finch.bio}}</p>
+</div>
+<div>
+    <a href = "{% url 'finch_update' finch.pk %}">Update {{finch.name}}</a>
+</div>
+
+{% endblock %}
