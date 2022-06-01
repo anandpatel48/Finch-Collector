@@ -3,6 +3,8 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Finch
+from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 # Create your views here
 
 
@@ -30,3 +32,14 @@ class FinchList(TemplateView):
         context = super().get_context_data(**kwargs)
         context['finches'] = Finch.objects.all()
         return context
+
+
+class FinchCreate(CreateView):
+    model = Finch
+    fields = ['name', 'img', 'bio']
+    template_name = "finch_create.html"
+    success_url = "/finches/"
+
+class FinchDetail(DetailView):
+    model = Finch
+    template_name = 'finch_detail.html'

@@ -4,5 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.Home.as_view(), name="home"),
     path('about/', views.About.as_view(), name = "about"),
-    path('finches/', views.FinchList.as_view(), name = "finch_list")
+    path('finches/', views.FinchList.as_view(), name = "finch_list"),
+    path('finches/new/', views.FinchCreate.as_view(), name = "finch_create"),
+    path('finches/<int:pk>/', views.FinchDetail.as_view(), name = "finch_detail")
 ]
