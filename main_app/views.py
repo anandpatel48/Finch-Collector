@@ -10,3 +10,22 @@ class Home(TemplateView):
 
 class About(TemplateView):
     template_name = 'about.html'
+
+# class Finch:
+#     def __init__(self, name, image, bio):
+#         self.name = name
+#         self.image = image
+#         self.bio = bio
+
+# finches = [
+#     Finch("Lebron James", "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png", "4x NBA Champion"),
+#     Finch("Stephen Curry", "https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3975.png&w=350&h=254", "3x NBA Champion"),
+#     Finch("Giannis Antetokounmpo", "https://cdn.nba.com/headshots/nba/latest/1040x760/203507.png", "1x NBA Champion")
+# ]
+
+class FinchList(TemplateView):
+    template_name = "finch_list.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['finches'] = finches
+        return context
