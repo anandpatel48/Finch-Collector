@@ -11,5 +11,8 @@
 <div>
     <a href = "{% url 'finch_update' finch.pk %}">Update {{finch.name}}</a>
 </div>
+<div>
+    <a href = "{% url 'finch_delete' finch.pk %}">Delete {{finch.name}}</a>
+</div>
 
 {% endblock %}
