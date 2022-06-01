@@ -12,3 +12,13 @@ class Finch(models.Model):
 
     class Meta:
         ordering = ['name']
+
+
+class Game(models.Model):
+    opponent = models.CharField(max_length = 150)
+    date = models.CharField(max_length = 30)
+    points = models.IntegerField()
+    finch = models.ForeignKey(Finch, on_delete = models.CASCADE, related_name="games")
+
+    def __str__(self):
+        return self.date

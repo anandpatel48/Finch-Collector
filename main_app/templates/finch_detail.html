@@ -15,4 +15,22 @@
     <a href = "{% url 'finch_delete' finch.pk %}">Delete {{finch.name}}</a>
 </div>
 
+<div class="detail__songs mb-5">
+    <h3>Games</h3>
+
+    {% for game in finch.games.all %}
+    <div class="song">
+      <span><b>{{game.date}}</b></span>
+      <span><b>{{game.opponent}}</b></span>
+      <span>{{game.points}}</span>
+    </div>
+		{% empty %}
+    <article>
+      <div>
+        <p>No Games Available</p>
+      </div>
+    </article>
+
+    {% endfor %}
+  </div>
 {% endblock %}
